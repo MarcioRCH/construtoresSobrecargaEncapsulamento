@@ -2,75 +2,44 @@ package entities;
 
 public class Champion {
 	
-	private String firstName, secondName;
-	private Integer firstLife, secondLife;
-	private Integer firstAttack, secondAttack;
-	private Integer firstArmor, secondArmor;
-	private Integer damange;
+	private String name;
+	private Integer life;
+	private Integer attack;
+	private Integer armor;;
 		
-	public void Champion(String firstName, int firstLife, int damange, int firstArmor) {
-		this.firstName = firstName;
-		this.firstLife = firstLife;
-		this.firstArmor = firstArmor;
-		takeDamange(damange);
-	}
-	public void takeDamange(int damange) {
-		damange = (firstLife + firstArmor) - secondAttack;
+	public Champion(String name, int life, int attack, int armor) {
+		this.name = name;
+		this.life = life;
+		this.attack = attack;
+		this.armor = armor;
 	}
 	
-	public String getFirstName() {
-		return firstName;
+	public String getName() {
+		return name;
 	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public Integer getLife() {
+		return life;
 	}
-	public String getSecondName() {
-		return secondName;
+	public Integer getAttack() {
+		return attack;
 	}
-	public void setSecondName(String secondName) {
-		this.secondName = secondName;
+	public Integer getArmor() {
+		return armor;
 	}
-	public Integer getFirstLife() {
-		return firstLife;
+	public void takeDamange(Champion other) {
+		int damage;
+		if(armor >= other.getAttack()) {
+			damage = 1;
+		}else {
+			damage = other.getAttack() - armor;
+		}
+		life = life - damage;
 	}
-	public void setFirstLife(Integer firstLife) {
-		this.firstLife = firstLife;
+	public String status() {
+		if(this.life <= 0) {
+			return this.name + ": " + "0 of life (died)";
+		}else {
+			return this.name + ": " + String.format("%d", this.life) + " of life";
+		}
 	}
-	public Integer getSecondLife() {
-		return secondLife;
-	}
-	public void setSecondLife(Integer secondLife) {
-		this.secondLife = secondLife;
-	}
-	public Integer getFirstAttack() {
-		return firstAttack;
-	}
-	public void setFirstAttack(Integer firstAttack) {
-		this.firstAttack = firstAttack;
-	}
-	public Integer getSecondAttack() {
-		return secondAttack;
-	}
-	public void setSecondAttack(Integer secondAttack) {
-		this.secondAttack = secondAttack;
-	}
-	public Integer getFirstArmor() {
-		return firstArmor;
-	}
-	public void setFirstArmor(Integer firstArmor) {
-		this.firstArmor = firstArmor;
-	}
-	public Integer getSecondArmor() {
-		return secondArmor;
-	}
-	public void setSecondArmor(Integer secondArmor) {
-		this.secondArmor = secondArmor;
-	}
-	public Integer getDamange() {
-		return damange;
-	}
-	public void setDamange(Integer damange) {
-		this.damange = damange;
-	}
-	
 }

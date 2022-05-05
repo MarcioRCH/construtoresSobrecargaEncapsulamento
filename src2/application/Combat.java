@@ -10,42 +10,51 @@ public class Combat {
 	public static void main(String[] args) {
 		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
-		Champion champ = new Champion();
+		Champion champA, champB;
 		System.out.println("Combat");
 		System.out.println("Insert first champion data.");
 		System.out.print("Name: ");
-		champ.setFirstName(sc.nextLine());
+		String name = sc.nextLine();
 		System.out.print("Inicial life: ");
-		champ.setFirstLife(sc.nextInt());
+		int life = sc.nextInt();
 		System.out.print("Attack: ");
-		champ.setFirstAttack(sc.nextInt());
+		int attack = sc.nextInt();
 		System.out.print("Armor: ");
-		champ.setFirstArmor(sc.nextInt());
+		int armor = sc.nextInt();
 		System.out.println(" ");
+		champA = new Champion(name, life, attack, armor);
 		
 		System.out.println("Insert second champion data.");
 		sc.nextLine();
 		System.out.print("Name: ");
-		champ.setSecondName(sc.nextLine());
+		name = sc.nextLine();
 		System.out.print("Inicial life: ");
-		champ.setSecondLife(sc.nextInt());
+		life = sc.nextInt();
 		System.out.print("Attack: ");
-		champ.setSecondAttack(sc.nextInt());
+		attack = sc.nextInt();
 		System.out.print("Armor: ");
-		champ.setSecondArmor(sc.nextInt());
+		armor = sc.nextInt();
 		System.out.println(" ");
+		champB = new Champion(name, life, attack, armor);
 		
 		System.out.print("How many turns do you want to run? ");
 		int turns = sc.nextInt();
 		System.out.println(" ");
 		
 		for(int i = 0; i < turns; i++) {
-			System.out.println("Turn result " + (i + 1));
-			System.out.println(champ.getFirstName() + ": " + champ.getDamange());
-			System.out.println(champ.getSecondName() + ": " + champ.getDamange());
-			System.out.println(" ");
+			champA.takeDamange(champB);
+			champB.takeDamange(champA);
+			
+			System.out.printf("\nTurn result \n", (i + 1));
+			System.out.println(champA.status());
+			System.out.println(champB.status());
+			
+			if(champA.getLife() <= 0 || champB.getLife() <= 0) {
+				break;
+			}
 		}
 		
+		System.out.printf("\nEND OF COMBAT!");
 		sc.close();
 	}
 
