@@ -5,7 +5,7 @@ public class Champion {
 	private String name;
 	private Integer life;
 	private Integer attack;
-	private Integer armor;;
+	private Integer armor;
 		
 	public Champion(String name, int life, int attack, int armor) {
 		this.name = name;
